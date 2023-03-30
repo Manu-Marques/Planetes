@@ -1,0 +1,8 @@
+.App {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    overflow: hidden;
+}
