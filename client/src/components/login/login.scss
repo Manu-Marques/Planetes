@@ -1,0 +1,52 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+
+  &__title {
+    text-align: center;
+    color: black;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__email,
+  &__password {
+    margin-top: 10px;
+    color: black;
+  }
+
+  &__forgot{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+
+  }
+}
+
+input {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
