@@ -1,34 +1,10 @@
-import './styles.scss'
-import { useState } from 'react'
-import Register from '../register'
-import Login from '../login'
+import { Link } from 'react-router-dom'
 
-export default function Header () {
-
-    const [showLogin, setShowLogin] = useState(false)
-    const [showRegister, setShowRegister] = useState(false)
-
-    const handleLoginClick = () => {
-        setShowLogin(true);
-        setShowRegister(false);
-      };
-
-      const handleRegisterClick = () => {
-        setShowLogin(false);
-        setShowRegister(true);
-      };
-    
-
-
+export default function Header() {
     return (
-        <div className="header">
-            <h1 className="header__title">My App</h1>
-            <div className="header__links">
-                <button onClick={handleLoginClick} className="header__links__link" >Login</button>
-                {showLogin && <Login />}
-                <button onClick={handleRegisterClick} className="header__links__link">Register</button>
-                {showRegister && <Register />}
-            </div>
+        <div>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
         </div>
     )
 }
