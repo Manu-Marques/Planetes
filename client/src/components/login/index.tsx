@@ -1,9 +1,6 @@
 import './styles.scss';
 import { useState } from 'react';
-
-interface Props {
-    onClose: () => void;
-}
+import { Link } from 'react-router-dom';
 
 interface FormValues {
     email: string;
@@ -11,7 +8,7 @@ interface FormValues {
 }
 
 
-function Login({ onClose }: Props) {
+export default function Login() {
 
     const [formValues, setFormValues] = useState<FormValues>({
         email: "",
@@ -34,9 +31,6 @@ function Login({ onClose }: Props) {
 
     return (
         <div className="container">
-            <div className="container__close">
-                <button onClick={onClose} className="container__close__button">X</button>
-            </div>
             <h1 className='container__title'>Se connecter</h1>
             <form className='container__form' onSubmit={handleSubmit}>
                 <label className='container__email' htmlFor="email">Adresse e-mail</label>
@@ -60,25 +54,6 @@ function Login({ onClose }: Props) {
                 </div>
                 <button type="submit">Se connecter</button>
             </form>
-        </div>
-    );
-}
-
-export default function App() {
-    const [showLogin, setShowLogin] = useState(false);
-
-    const handleLoginClick = () => {
-        setShowLogin(true);
-    };
-
-    const handleCloseLogin = () => {
-        setShowLogin(false);
-    };
-
-    return (
-        <div>
-            <button onClick={handleLoginClick}>Login</button>
-            {showLogin && <Login onClose={handleCloseLogin} />}
         </div>
     );
 }

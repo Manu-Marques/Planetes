@@ -2,10 +2,6 @@ import './styles.scss';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-interface Props {
-    onClose: () => void;
-}
-
 interface FormValues {
     firstName: string;
     lastName: string;
@@ -14,7 +10,7 @@ interface FormValues {
     confirmPassword: string;
 }
 
-function Register({ onClose }: Props) {
+export default function Register() {
     const [formValues, setFormValues] = useState<FormValues>({
         firstName: "",
         lastName: "",
@@ -38,9 +34,6 @@ function Register({ onClose }: Props) {
 
     return (
         <div className="container">
-            <div className="container__close">
-                <button onClick={onClose} className="container__close__button">X</button>
-            </div>
             <h1>S'inscrire</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -100,24 +93,6 @@ function Register({ onClose }: Props) {
                 </div>
                 <button type="submit">S'inscrire</button>
             </form>
-        </div>
-    );
-}
-
-export default function App() {
-    const [showRegister, setShowRegister] = useState(false);
-
-    const handleShow = () => {
-        setShowRegister(true);
-    };
-
-    const handleClose = () => {
-        setShowRegister(false);
-    };
-
-    return (
-        <div>
-            {showRegister && <Register onClose={handleClose} />}
         </div>
     );
 }
