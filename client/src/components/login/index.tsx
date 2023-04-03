@@ -1,13 +1,16 @@
 import './styles.scss';
 import { useState } from 'react';
-import GoBack from '../arrowBack';
 
 interface FormValues {
     email: string;
     password: string;
 }
 
-export default function Login() {
+interface Props {
+    onClose: () => void;
+}
+
+ function Login({ onClose }: Props) {
 
     const [formValues, setFormValues] = useState<FormValues>({
         email: "",
@@ -29,7 +32,9 @@ export default function Login() {
 
     return (
         <div className="container">
-            <GoBack />
+             <div className="container__close">
+                <button onClick={onClose} className="container__close__button">X</button>
+            </div>
             <h1 className='container__title'>Se connecter</h1>
             <form className='container__form' onSubmit={handleSubmit}>
                 <label className='container__email' htmlFor="email">Adresse e-mail</label>
@@ -53,6 +58,20 @@ export default function Login() {
                 </div>
                 <button type="submit">Se connecter</button>
             </form>
+        </div>
+    );
+}
+
+export default function App() {
+    const [showLogin, setShowLogin] = useState(true);
+
+    const handleCloseLogin = () => {
+        setShowLogin(false);
+    };
+
+    return (
+        <div>
+            {showLogin && <Login onClose={handleCloseLogin} />}
         </div>
     );
 }

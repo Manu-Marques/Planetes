@@ -1,6 +1,5 @@
 import './styles.scss';
 import { useState } from 'react';
-import GoBack from '../arrowBack';
 
 interface FormValues {
     firstName: string;
@@ -33,7 +32,6 @@ export default function Register() {
 
     return (
         <div className="container">
-            <GoBack />
             <h1 className='container__title' >S'inscrire</h1>
             <form className='container__form' onSubmit={handleSubmit}>
                     <label htmlFor="firstName">Prénom</label>
