@@ -1,6 +1,6 @@
 import './styles.scss';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import GoBack from '../arrowBack';
 
 interface FormValues {
     firstName: string;
@@ -31,12 +31,11 @@ export default function Register() {
         event.preventDefault();
     };
 
-
     return (
         <div className="container">
-            <h1>S'inscrire</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
+            <GoBack />
+            <h1 className='container__title' >S'inscrire</h1>
+            <form className='container__form' onSubmit={handleSubmit}>
                     <label htmlFor="firstName">Prénom</label>
                     <input
                         type="text"
@@ -46,8 +45,6 @@ export default function Register() {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="form-group">
                     <label htmlFor="lastName">Nom de famille</label>
                     <input
                         type="text"
@@ -57,8 +54,6 @@ export default function Register() {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="form-group">
                     <label htmlFor="email">Adresse e-mail</label>
                     <input
                         type="email"
@@ -68,8 +63,6 @@ export default function Register() {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="form-group">
                     <label htmlFor="password">Mot de passe</label>
                     <input
                         type="password"
@@ -79,8 +72,6 @@ export default function Register() {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="form-group">
                     <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
                     <input
                         type="password"
@@ -90,7 +81,6 @@ export default function Register() {
                         onChange={handleChange}
                         required
                     />
-                </div>
                 <button type="submit">S'inscrire</button>
             </form>
         </div>

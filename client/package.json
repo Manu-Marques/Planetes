@@ -12,7 +12,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
-    "sass": "^1.60.0"
+    "react-use-navigate": "^0.1.1",
+    "sass": "^1.60.0",
+    "use-history": "^1.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

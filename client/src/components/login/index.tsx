@@ -1,12 +1,11 @@
 import './styles.scss';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import GoBack from '../arrowBack';
 
 interface FormValues {
     email: string;
     password: string;
 }
-
 
 export default function Login() {
 
@@ -28,9 +27,9 @@ export default function Login() {
         e.preventDefault();
     }
 
-
     return (
         <div className="container">
+            <GoBack />
             <h1 className='container__title'>Se connecter</h1>
             <form className='container__form' onSubmit={handleSubmit}>
                 <label className='container__email' htmlFor="email">Adresse e-mail</label>
