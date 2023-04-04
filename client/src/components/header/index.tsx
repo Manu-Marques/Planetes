@@ -4,7 +4,7 @@ import "./styles.scss";
 import Login from "../login";
 import Register from "../register";
 
-export default function Header () {
+export default function Header() {
   return (
     <div className="header">
       <div className="header__logo">
@@ -13,8 +13,10 @@ export default function Header () {
       </div>
       <nav className="header__nav">
         <ul className="header__menu">
-              <Link to='/login' className="header__menu-link">Login</Link>
-                <Link to='/register'className="header__menu-link">Register</Link>
+          <Link to="/login">Login
+          </Link>
+          <Link to="/register">Register
+          </Link>
         </ul>
       </nav>
     </div>

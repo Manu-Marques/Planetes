@@ -6,11 +6,7 @@ interface FormValues {
     password: string;
 }
 
-interface Props {
-    onClose: () => void;
-}
-
- function Login({ onClose }: Props) {
+export default function Login() {
 
     const [formValues, setFormValues] = useState<FormValues>({
         email: "",
@@ -32,9 +28,6 @@ interface Props {
 
     return (
         <div className="container">
-             <div className="container__close">
-                <button onClick={onClose} className="container__close__button">X</button>
-            </div>
             <h1 className='container__title'>Se connecter</h1>
             <form className='container__form' onSubmit={handleSubmit}>
                 <label className='container__email' htmlFor="email">Adresse e-mail</label>
@@ -58,20 +51,6 @@ interface Props {
                 </div>
                 <button type="submit">Se connecter</button>
             </form>
-        </div>
-    );
-}
-
-export default function App() {
-    const [showLogin, setShowLogin] = useState(true);
-
-    const handleCloseLogin = () => {
-        setShowLogin(false);
-    };
-
-    return (
-        <div>
-            {showLogin && <Login onClose={handleCloseLogin} />}
         </div>
     );
 }
