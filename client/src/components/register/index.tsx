@@ -36,8 +36,9 @@ export default function Register() {
         <div className="container__register">
             <h1 className='container__register__title' >S'inscrire</h1>
             <form className='container__register__form' onSubmit={handleSubmit}>
-                <label htmlFor="firstName">Prénom</label>
+                <label className='container__register__firstName' htmlFor="firstName">Prénom</label>
                 <input
+                    className='container__register__firstName__input'
                     type="text"
                     id="firstName"
                     name="firstName"
@@ -45,8 +46,9 @@ export default function Register() {
                     onChange={handleChange}
                     required
                 />
-                <label htmlFor="lastName">Nom de famille</label>
+                <label className='container__register__lastName' htmlFor="lastName">Nom de famille</label>
                 <input
+                    className='container__register__lastName__input'
                     type="text"
                     id="lastName"
                     name="lastName"
@@ -54,8 +56,9 @@ export default function Register() {
                     onChange={handleChange}
                     required
                 />
-                <label htmlFor="email">Adresse e-mail</label>
+                <label className='container__register__email' htmlFor="email">Adresse e-mail</label>
                 <input
+                    className='container__register__email__input'
                     type="email"
                     id="email"
                     name="email"
@@ -63,8 +66,9 @@ export default function Register() {
                     onChange={handleChange}
                     required
                 />
-                <label htmlFor="password">Mot de passe</label>
+                <label className='container__register_password' htmlFor="password">Mot de passe</label>
                 <input
+                    className='container__register__password__input'
                     type="password"
                     id="password"
                     name="password"
@@ -72,8 +76,9 @@ export default function Register() {
                     onChange={handleChange}
                     required
                 />
-                <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
+                <label className='container__register__confirmPassword' htmlFor="confirmPassword">Confirmer le mot de passe</label>
                 <input
+                    className='container__register__confirmPassword__input'
                     type="password"
                     id="confirmPassword"
                     name="confirmPassword"
@@ -81,7 +86,7 @@ export default function Register() {
                     onChange={handleChange}
                     required
                 />
-                <button type="submit">S'inscrire</button>
+                <button className='container__login__submit' type="submit">S'inscrire</button>
             </form>
         </div>
     );

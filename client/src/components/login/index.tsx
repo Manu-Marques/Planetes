@@ -32,6 +32,7 @@ export default function Login() {
             <form className='container__login__form' onSubmit={handleSubmit}>
                 <label className='container__login__email' htmlFor="email">Adresse e-mail</label>
                 <input
+                    className='container__login__email__input'
                     type="email"
                     name="email"
                     id='email'
@@ -41,6 +42,7 @@ export default function Login() {
                 />
                 <label className='container__login__password' htmlFor="password">Mot de passe</label>
                 <input
+                    className='container__login__password__input'
                     type="password"
                     name="password"
                     id='password'
@@ -51,7 +53,7 @@ export default function Login() {
                 <div className='container__login__forgot'>
                     <a className='container__login__forgot__password' href='/forgot-password'>Mot de passe oublié</a>
                 </div>
-                <button type="submit">Se connecter</button>
+                <button className='container__login__submit' type="submit">Se connecter</button>
             </form>
         </div>
     );

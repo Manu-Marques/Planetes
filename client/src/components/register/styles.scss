@@ -9,20 +9,16 @@
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-top: 100px;
-}
 
-h1 {
-  text-align: center;
-  color: black;
-}
+  &__title {
+    text-align: center;
+    color: black;
+  }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group {
-  margin-top: 10px;
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 label {
