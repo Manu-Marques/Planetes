@@ -33,9 +33,9 @@ export default function Register() {
     };
 
     return (
-        <div className="container">
-            <h1 className='container__title' >S'inscrire</h1>
-            <form className='container__form' onSubmit={handleSubmit}>
+        <div className="container__register">
+            <h1 className='container__register__title' >S'inscrire</h1>
+            <form className='container__register__form' onSubmit={handleSubmit}>
                 <label htmlFor="firstName">Prénom</label>
                 <input
                     type="text"

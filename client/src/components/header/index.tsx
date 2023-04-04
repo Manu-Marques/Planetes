@@ -9,7 +9,9 @@ export default function Header() {
     <div className="header">
       <div className="header__logo">
         <img src={photo} alt="Logo" />
-        <h1>Planètes</h1>
+        <Link to="/">
+          <h1>Planètes</h1>
+        </Link>
       </div>
       <nav className="header__nav">
         <ul className="header__menu">

@@ -27,27 +27,29 @@ export default function Login() {
     }
 
     return (
-        <div className="container">
-            <h1 className='container__title'>Se connecter</h1>
-            <form className='container__form' onSubmit={handleSubmit}>
-                <label className='container__email' htmlFor="email">Adresse e-mail</label>
+        <div className="container__login">
+            <h1 className='container__login__title'>Se connecter</h1>
+            <form className='container__login__form' onSubmit={handleSubmit}>
+                <label className='container__login__email' htmlFor="email">Adresse e-mail</label>
                 <input
                     type="email"
                     name="email"
+                    id='email'
                     value={formValues.email}
                     onChange={handleChange}
                     required
                 />
-                <label className='container__password' htmlFor="password">Mot de passe</label>
+                <label className='container__login__password' htmlFor="password">Mot de passe</label>
                 <input
                     type="password"
                     name="password"
+                    id='password'
                     value={formValues.password}
                     onChange={handleChange}
                     required
                 />
-                <div className='container__forgot'>
-                    <a className='container__forgot__password' href='/forgot-password'>Mot de passe oublié</a>
+                <div className='container__login__forgot'>
+                    <a className='container__login__forgot__password' href='/forgot-password'>Mot de passe oublié</a>
                 </div>
                 <button type="submit">Se connecter</button>
             </form>
