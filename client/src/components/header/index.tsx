@@ -15,10 +15,8 @@ export default function Header() {
       </div>
       <nav className="header__nav">
         <ul className="header__menu">
-          <Link to="/login">Login
-          </Link>
-          <Link to="/register">Register
-          </Link>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
         </ul>
       </nav>
     </div>

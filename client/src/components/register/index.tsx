@@ -66,7 +66,7 @@ export default function Register() {
                     onChange={handleChange}
                     required
                 />
-                <label className='container__register_password' htmlFor="password">Mot de passe</label>
+                <label className='container__register__password' htmlFor="password">Mot de passe</label>
                 <input
                     className='container__register__password__input'
                     type="password"
@@ -86,7 +86,7 @@ export default function Register() {
                     onChange={handleChange}
                     required
                 />
-                <button className='container__login__submit' type="submit">S'inscrire</button>
+                <button className='container__register__submit' type="submit">S'inscrire</button>
             </form>
         </div>
     );
