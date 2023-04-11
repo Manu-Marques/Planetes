@@ -7,7 +7,7 @@ export default function Header() {
     <div className="header">
       <div className="header__logo">
       </div>
-      <nav className="header__nav">
+      <ul className="header__nav">
         <li className="header__menu">
           <Link className="header__news" to="/news">News</Link>
           <Link className="header__lunes" to="/lunes">Lunes</Link>
@@ -18,7 +18,7 @@ export default function Header() {
           <Link className="header__login" to="/login">Login</Link>
           <Link className="header__register" to="/register">Register</Link>
         </li>
-      </nav>
+      </ul>
     </div>
   );
 };
