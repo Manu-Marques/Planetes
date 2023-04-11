@@ -9,9 +9,9 @@ export default function Header() {
       </div>
       <nav className="header__nav">
         <li className="header__menu">
+          <Link className="header__news" to="/news">News</Link>
           <Link className="header__lunes" to="/lunes">Lunes</Link>
           <Link className="header__planetes" to="/planetes">Planètes</Link>
-          <Link className="header__news" to="/news">News</Link>
         </li>
         <Link to="/"><img src={Planetes} alt="banniere" /></Link>
         <li className="header__connection">

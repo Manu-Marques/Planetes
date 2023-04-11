@@ -1,8 +1,5 @@
 .header {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    height: 300px;
 
     &__login,
     &__register,
@@ -29,6 +26,7 @@
   
   .header__nav {
     display: flex;
+    justify-content: space-around;
   }
   
   .header__menu-item:not(:last-child) {
