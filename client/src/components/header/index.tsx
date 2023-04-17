@@ -13,7 +13,7 @@ export default function Header() {
           <Link className="header__planetes" to="/planetes">Planètes</Link>
           <Link className="header__lunes" to="/lunes">Lunes</Link>
         </li>
-        <Link to="/"><img src={Planetes} alt="banniere" /></Link>
+        <Link className="header__image" to="/"><img src={Planetes} alt="banniere" /></Link>
         <li className="header__connection">
           <Link className="header__login" to="/login">Login</Link>
           <Link className="header__register" to="/register">Register</Link>
