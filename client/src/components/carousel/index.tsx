@@ -1,8 +1,10 @@
-import { Navigation, Pagination, Scrollbar, EffectCube } from "swiper"
+import { Navigation, Pagination, Scrollbar, EffectCube, Autoplay } from "swiper"
 import "swiper/css"
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
+import 'swiper/css/effect-cube'
+import 'swiper/css/autoplay'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
@@ -17,15 +19,18 @@ export default function Carousel() {
         },
         {
             id: 2,
-            url: "https://images.unsplash.com/photo-1610390000000-1b1b1b1b1b1b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+            url : '../../src/assets/planetes.jpg',
+            text: "hello par ici"
         },
         {
             id: 3,
-            url: "https://images.unsplash.com/photo-1610390000000-1b1b1b1b1b1b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+            url : '../../src/assets/planetes.jpg',
+            text: "hello par ici"
         },
         {
             id: 4,
-            url: "https://images.unsplash.com/photo-1610390000000-1b1b1b1b1b1b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+            url : '../../src/assets/planetes.jpg',
+            text: "hello par ici"
         },
     ]
 
@@ -33,9 +38,13 @@ export default function Carousel() {
     return (
         <div className="swiper-container">
         <Swiper
-   // install Swiper modules
    effect={"cube"}
+   
    grabCursor={true}
+   autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+        }}
    cubeEffect={{
      shadow: true,
      slideShadows: true,
@@ -43,7 +52,7 @@ export default function Carousel() {
      shadowScale: 0.94,
    }}
    pagination={true}
-   modules={[EffectCube, Pagination]}
+   modules={[EffectCube, Pagination, Navigation, Scrollbar, Autoplay]}
    className="mySwiper" >
     {Images.map((image) => (
         <SwiperSlide key={image.id}>
