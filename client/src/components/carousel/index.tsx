@@ -14,53 +14,50 @@ export default function Carousel() {
     const Images = [
         {
             id: 1,
-            url : '../../src/assets/planetes.jpg',
-            text: "hello par ici"
+            url: '../../src/assets/planetes.jpg',
+            text: "hello par ici que tu sois hello par ici que tu soishello par ici que tu soishello par ici que tu soishello par ici que tu soishello par ici que tu sois"
         },
         {
             id: 2,
-            url : '../../src/assets/planetes.jpg',
+            url: '../../src/assets/planetes.jpg',
             text: "hello par ici"
         },
         {
             id: 3,
-            url : '../../src/assets/planetes.jpg',
+            url: '../../src/assets/planetes.jpg',
             text: "hello par ici"
         },
         {
             id: 4,
-            url : '../../src/assets/planetes.jpg',
+            url: '../../src/assets/planetes.jpg',
             text: "hello par ici"
         },
     ]
 
-
     return (
         <div className="swiper-container">
-        <Swiper
-   effect={"cube"}
-   
-   grabCursor={true}
-   autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-        }}
-   cubeEffect={{
-     shadow: true,
-     slideShadows: true,
-     shadowOffset: 20,
-     shadowScale: 0.94,
-   }}
-   pagination={true}
-   modules={[EffectCube, Pagination, Navigation, Scrollbar, Autoplay]}
-   className="mySwiper" >
-    {Images.map((image) => (
-        <SwiperSlide key={image.id}>
-            <img src={image.url} alt="image" />
-            <p>{image.text}</p>
-        </SwiperSlide>
-    ))}
- </Swiper>
-     </div>
+            <Swiper
+                effect={"cube"}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={"auto"}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
+                cubeEffect={{
+                    shadow: false,
+                }}
+                pagination={true}
+                modules={[EffectCube, Pagination, Navigation, Scrollbar, Autoplay]}
+                className="swiper" >
+                {Images.map((image) => (
+                    <SwiperSlide key={image.id}>
+                        <img className="swiper__image" src={image.url} alt="image" />
+                        <p className="swiper__text">{image.text}</p>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
     );
 }
