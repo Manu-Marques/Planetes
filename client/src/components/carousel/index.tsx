@@ -20,7 +20,7 @@ export default function Carousel() {
         {
             id: 2,
             url: '../../src/assets/planetes.jpg',
-            text: "hello par ici"
+            text: ' "hello par ici que tu sois hello par ici que tu soishello par ici que tu soishello par ici que tu soishello par ici que tu soishello par ici que tu sois"'
         },
         {
             id: 3,
