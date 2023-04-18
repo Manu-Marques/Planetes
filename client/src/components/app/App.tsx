@@ -4,7 +4,7 @@ import Login from '../login'
 import Register from '../register'
 import Home from '../home'
 import News from '../news'
-import Planets from '../planetes'
+import Planetes from '../planetes'
 import Lunes from '../lunes'
 import { Routes, Route } from 'react-router-dom'
 
@@ -15,7 +15,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/news" element={<News />} />
-        <Route path="/planets" element={<Planets />} />
+        <Route path="/planetes" element={<Planetes />} />
         <Route path="/lunes" element={<Lunes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

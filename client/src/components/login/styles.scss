@@ -6,12 +6,13 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: rgb(117, 107, 107);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
   
   &__title {
     text-align: center;
-    color: black;
+    color: rgb(0, 0, 0);
   }
 
   &__form {
@@ -41,6 +42,7 @@
   }
 
   &__submit {
+    font-size: 1em;
     padding: 10px;
     background-color: #007bff;
     color: #fff;
