@@ -6,6 +6,8 @@ import Home from '../home'
 import News from '../news'
 import Planetes from '../planetes'
 import Lunes from '../lunes'
+import DetailsPlanetes from '../planetes/detailsPlanetes'
+import DetailsLunes from '../lunes/detailsLunes'
 import { Routes, Route } from 'react-router-dom'
 
 export default function App() {
@@ -19,6 +21,8 @@ export default function App() {
         <Route path="/lunes" element={<Lunes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/planetes/details_planetes" element={<DetailsPlanetes />} />
+        <Route path="/lunes/details_lunes" element={<DetailsLunes />} />
       </Routes>
     </div>
   )
