@@ -15,6 +15,14 @@ export default function DetailsPlanetes() {
                     <h3 className="planete__details__title">Diamètre</h3>
                     <p className="planete__details__description">4 879 km</p>
                 </div>
+                <div className="planete__details__container">
+                    <h3 className="planete__details__title">Diamètre</h3>
+                    <p className="planete__details__description">4 879 km</p>
+                </div>
+                <div className="planete__details__container">
+                    <h3 className="planete__details__title">Diamètre</h3>
+                    <p className="planete__details__description">4 879 km</p>
+                </div>
             </div>
         </div>
     )
