@@ -38,7 +38,7 @@ function Card({ id, name, description, img }: CardProps) {
             <div className='card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
                 <h2>{name}</h2>
                 <p>{description}</p>
-                <img src={img}>{img}</img>
+                <img src={img}></img>
             </div>
         </div>
     );
