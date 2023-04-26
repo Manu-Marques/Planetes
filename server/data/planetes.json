@@ -13,7 +13,7 @@
     "surface_water": "71",
     "climate": "Temperate",
     "terrain": "Prairies, Montagnes",
-    "population": "1000000000000"
+    "population": "1000000000000",
   },
   {
     "id": "2",
@@ -29,7 +29,7 @@
     "surface_water": "0",
     "climate": "Temperate",
     "terrain": "Désert, Plaines, Montagnes",
-    "population": "1000000000000"
+    "population": "1000000000000",
   },
   {
     "id": "3",
@@ -45,7 +45,7 @@
     "surface_water": "96",
     "climate": "Temperate",
     "terrain": "Forêts, Plaines, Montagnes",
-    "population": "1000000000000"
+    "population": "1000000000000",
   },
   {
     "id": "4",
