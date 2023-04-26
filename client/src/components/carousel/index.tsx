@@ -37,6 +37,7 @@ export default function Carousel() {
     return (
         <div className="swiper-container">
             <Swiper
+                speed={600}
                 effect={"cube"}
                 grabCursor={true}
                 centeredSlides={true}
