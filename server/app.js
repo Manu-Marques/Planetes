@@ -1,4 +1,5 @@
-import cards from './data/planetes.json' assert { type: 'json' };
+import planetes from './data/planetes.json' assert { type: 'json' };
+import lunes from './data/lunes.json' assert { type: 'json' };
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import express from 'express';
@@ -9,8 +10,13 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 
-app.get('/cards', (req, res) => {
-  res.send(cards);
+app.get('/planetes', (req, res) => {
+  res.send(planetes);
+  console.log ('cards');
+});
+
+app.get('/lunes', (req, res) => {
+  res.send(lunes);
   console.log ('cards');
 });
 

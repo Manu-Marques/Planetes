@@ -34,7 +34,7 @@ function Card({ id, name, description, img }: CardProps) {
     };
 
     return (
-        <div className="cards" >
+        <div className="cards">
             <div className='card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
                 <h2>{name}</h2>
                 <p>{description}</p>
@@ -44,7 +44,7 @@ function Card({ id, name, description, img }: CardProps) {
     );
 }
 
-function CardList() {
+export default function CardList() {
     const [cards, setCards] = useState<CardProps[]>([]);
 
     useEffect(() => {
@@ -53,15 +53,11 @@ function CardList() {
             .then(data => setCards(data));
     }, []);
 
-
-
     return (
-        <div>
+        <div className='cards__container'>
             {cards.map(card => (
                 <Card key={card.id} id={card.id} name={card.name} description={card.description} img={card.img} />
             ))}
         </div>
     );
 }
-
-export default CardList;
