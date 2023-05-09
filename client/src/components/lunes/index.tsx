@@ -52,7 +52,7 @@ export default function LunesList() {
     ;
 
     return (
-        <div className='cards__container'>
+        <div className='lunes__container'>
             {cards.map(card => (
                 <Card key={card.id} id={card.id} name={card.name} description={card.description}  />
             ))}
