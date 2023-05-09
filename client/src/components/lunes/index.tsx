@@ -32,8 +32,8 @@ function Card({ id, name, description }: CardProps) {
     };
 
     return (
-        <div className="cards">
-            <div className='card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
+        <div className="lunes__cards">
+            <div className='lunes__card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
                 <h2>{name}</h2>
                 <p>{description}</p>
             </div>
