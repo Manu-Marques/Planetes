@@ -1,15 +1,13 @@
 import './styles.scss'
-
 import { useState, useEffect } from 'react';
 
 interface CardProps {
     id: number;
     name: string;
     description: string;
-    img: string;
 }
 
-function Card({ id, name, description, img }: CardProps) {
+function Card({ id, name, description }: CardProps) {
     const [angleX, setAngleX] = useState<number>(0);
     const [angleY, setAngleY] = useState<number>(0);
     const [scale, setScale] = useState<number>(1);
@@ -38,25 +36,26 @@ function Card({ id, name, description, img }: CardProps) {
             <div className='card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
                 <h2>{name}</h2>
                 <p>{description}</p>
-                <img src={img}></img>
             </div>
         </div>
     );
 }
 
-export default function CardList() {
+export default function LunesList() {
     const [cards, setCards] = useState<CardProps[]>([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/cards')
+        fetch('http://localhost:3000/lunes')
             .then(response => response.json())
             .then(data => setCards(data));
-    }, []);
+    }, [])
+    console.log(cards)
+    ;
 
     return (
         <div className='cards__container'>
             {cards.map(card => (
-                <Card key={card.id} id={card.id} name={card.name} description={card.description} img={card.img} />
+                <Card key={card.id} id={card.id} name={card.name} description={card.description}  />
             ))}
         </div>
     );

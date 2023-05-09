@@ -1,42 +1,62 @@
 import './styles.scss'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react';
 
-export default function Planetes() {
+interface CardProps {
+    id: number;
+    name: string;
+    description: string;
+}
+
+function Card({ id, name, description }: CardProps) {
+    const [angleX, setAngleX] = useState<number>(0);
+    const [angleY, setAngleY] = useState<number>(0);
+    const [scale, setScale] = useState<number>(1);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const elRect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - elRect.x;
+        const y = e.clientY - elRect.y;
+
+        const midCardWidth = elRect.width / 2;
+        const midCardHeight = elRect.height / 2;
+
+        setAngleY((x - midCardWidth) / 8);
+        setAngleX((y - midCardHeight) / 8);
+        setScale(1.1);
+    };
+
+    const handleMouseLeave = () => {
+        setAngleX(0);
+        setAngleY(0);
+        setScale(1);
+    };
+
     return (
-        <div className="planetes">
-            <h1 className='planetes__title'>Les Planètes</h1>
-            <div className="planetes__container">
-                <div className="planetes__container__main">
-                    <h2 className="planetes__container__mercury__title">Mercure</h2>
-                    <p className="planetes__container__mercury__description">Mercure est la planète la plus proche du Soleil et la plus petite du Système solaire.</p>
-                    <img className="planetes__container__mercury__image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/1200px-Mercury_in_color_-_Prockter07-edit1.jpg" alt="mercury" />
-                    <Link to="/planetes/details_planetes" className="planetes__container__mercury__link">En savoir plus</Link>
-                </div>
-                <div className="planetes__container__main">
-                    <h2 className="planetes__container__mercury__title">Mercure</h2>
-                    <p className="planetes__container__mercury__description">Mercure est la planète la plus proche du Soleil et la plus petite du Système solaire.</p>
-                    <img className="planetes__container__mercury__image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/1200px-Mercury_in_color_-_Prockter07-edit1.jpg" alt="mercury" />
-                    <Link to="/planetes/details_planetes" className="planetes__container__mercury__link">En savoir plus</Link>
-                </div>
-                <div className="planetes__container__main">
-                    <h2 className="planetes__container__mercury__title">Mercure</h2>
-                    <p className="planetes__container__mercury__description">Mercure est la planète la plus proche du Soleil et la plus petite du Système solaire.</p>
-                    <img className="planetes__container__mercury__image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/1200px-Mercury_in_color_-_Prockter07-edit1.jpg" alt="mercury" />
-                    <Link to="/planetes/details_planetes" className="planetes__container__mercury__link">En savoir plus</Link>
-                </div>
-                <div className="planetes__container__main">
-                    <h2 className="planetes__container__mercury__title">Mercure</h2>
-                    <p className="planetes__container__mercury__description">Mercure est la planète la plus proche du Soleil et la plus petite du Système solaire.</p>
-                    <img className="planetes__container__mercury__image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/1200px-Mercury_in_color_-_Prockter07-edit1.jpg" alt="mercury" />
-                    <Link to="/planetes/details_planetes" className="planetes__container__mercury__link">En savoir plus</Link>
-                </div>
-                <div className="planetes__container__main">
-                    <h2 className="planetes__container__mercury__title">Mercure</h2>
-                    <p className="planetes__container__mercury__description">Mercure est la planète la plus proche du Soleil et la plus petite du Système solaire.</p>
-                    <img className="planetes__container__mercury__image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/1200px-Mercury_in_color_-_Prockter07-edit1.jpg" alt="mercury" />
-                    <Link to="/planetes/details_planetes" className="planetes__container__mercury__link">En savoir plus</Link>
-                </div>
+        <div className="cards">
+            <div className='card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
+                <h2>{name}</h2>
+                <p>{description}</p>
             </div>
+        </div>
+    );
+}
+
+export default function PlanetesList() {
+    const [cards, setCards] = useState<CardProps[]>([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3000/planetes')
+            .then(response => response.json())
+            .then(data => setCards(data));
+    }, [])
+    console.log(cards)
+    ;
+
+    return (
+        <div className='cards__container'>
+            {cards.map(card => (
+                <Card key={card.id} id={card.id} name={card.name} description={card.description} />
+            ))}
         </div>
     );
 }

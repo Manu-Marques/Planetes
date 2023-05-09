@@ -9,15 +9,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 
 app.get('/planetes', (req, res) => {
-  res.send(planetes);
-  console.log ('cards');
+  res.json(planetes);
 });
 
 app.get('/lunes', (req, res) => {
-  res.send(lunes);
-  console.log ('cards');
+  res.json(lunes);
 });
 
 app.listen(3000, () => {
