@@ -49,7 +49,6 @@ export default function LunesList() {
             .then(response => response.json())
             .then(data => setCards(data));
     }, [])
-    console.log(cards)
     ;
 
     return (

@@ -49,7 +49,6 @@ export default function PlanetesList() {
             .then(response => response.json())
             .then(data => setCards(data));
     }, [])
-    console.log(cards)
     ;
 
     return (
