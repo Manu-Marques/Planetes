@@ -1,6 +1,6 @@
 import './styles.scss';
 import Planetes from '../../../src/assets/planetes.jpg';
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useEffect } from 'react';
 
 
 export default function Card() {
@@ -27,13 +27,23 @@ export default function Card() {
     setScale(1);
     };
 
+    const [cards, setCards] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:3000/data')
+            .then(response => response.json())
+            .then(data => setCards(data));
+    }, [])
+
+
   return (
     <div className="content" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       <div className='card' style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
         <div className="card__title">
             <h1>Planetes</h1>
         </div>
-        <img src={Planetes} alt="Planetes" />
+        {cards.map(({image})=> (
+        <img src={image}alt="Planetes" />
+        ))}
       </div>
     </div>
   );
