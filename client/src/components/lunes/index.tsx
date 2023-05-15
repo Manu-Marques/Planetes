@@ -5,9 +5,10 @@ interface CardProps {
     id: number;
     name: string;
     description: string;
+    image: string;
 }
 
-function Card({ id, name, description }: CardProps) {
+function Card({ id, name, description, image }: CardProps) {
     const [angleX, setAngleX] = useState<number>(0);
     const [angleY, setAngleY] = useState<number>(0);
     const [scale, setScale] = useState<number>(1);
@@ -36,6 +37,7 @@ function Card({ id, name, description }: CardProps) {
             <div className='lunes__card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
                 <h2>{name}</h2>
                 <p>{description}</p>
+                <img src={`/images/${image}`} alt={name} />
             </div>
         </div>
     );
@@ -54,7 +56,7 @@ export default function LunesList() {
     return (
         <div className='lunes__container'>
             {cards.map(card => (
-                <Card key={card.id} id={card.id} name={card.name} description={card.description}  />
+                <Card key={card.id} id={card.id} name={card.name} description={card.description} image={card.image} />
             ))}
         </div>
     );

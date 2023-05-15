@@ -3,7 +3,7 @@ import {useState } from 'react';
 export default function Data() {
     const [data, setData] = useState<any[]>([]);
 
-    fetch('http://localhost:3000/data')
+    fetch('http://localhost:3000/lunes')
         .then(response => response.json())
         .then(data => setData(data));
 
@@ -13,7 +13,7 @@ export default function Data() {
                 <div className='data__card'>
                     <h2>{data.name}</h2>
                     <p>{data.description}</p>
-                    <img src={data.image} alt="Planetes" />
+                    <img src={`public/images${data.image}`} />
                 </div>
             ))}
         </div>
