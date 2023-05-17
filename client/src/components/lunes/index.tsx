@@ -34,10 +34,10 @@ function Card({ id, name, description, image }: CardProps) {
 
     return (
         <div className="lunes__cards">
-            <div className='lunes__card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
+            <div key={id} className='lunes__card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
                 <h2>{name}</h2>
                 <p>{description}</p>
-                <img src={`/images/${image}`} alt={name} />
+                <img className='lunes__img' src={`/images/${image}`} alt={name} />
             </div>
         </div>
     );
