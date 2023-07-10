@@ -16,7 +16,7 @@ export default function Header() {
         <Link className="header__image" to="/"><img src={Planetes} alt="banniere" /></Link>
         <li className="header__connection">
           <Link className="header__login" to="/login">Login</Link>
-          <Link className="header__register" to="/register">Register</Link>
+          <Link className="header__register" to="/signup">Register</Link>
         </li>
       </nav>
     </div>

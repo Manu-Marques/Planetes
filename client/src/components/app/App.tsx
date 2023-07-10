@@ -21,7 +21,7 @@ export default function App() {
         <Route path="/planetes" element={<Planetes />} />
         <Route path="/lunes" element={<Lunes />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/signup" element={<Register />} />
         <Route path='/data' element={<Data/>} />
         <Route path="/planetes/details_planetes" element={<DetailsPlanetes />} />
         <Route path="/lunes/details_lunes" element={<DetailsLunes />} />

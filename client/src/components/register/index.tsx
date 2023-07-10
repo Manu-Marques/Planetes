@@ -12,58 +12,42 @@ interface FormValues {
 }
 
 export default function Register() {
-    const [formValues, setFormValues] = useState<FormValues>({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+
+    const [ email, setEmail ] = useState<string>("");
+    const [ password, setPassword ] = useState<string>("");
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+    
+
+    const response = await fetch("http://localhost:3000/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
     });
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormValues((prevValues) => ({
-            ...prevValues,
-            [name]: value,
-        }));
-    };
+    if (response.ok) {
+        const { token } = await response.json();
+        localStorage.setItem("token", token);
+    }
+    else {
+        console.log("error");
+    }
+};
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-    };
 
     return (
         <div className="container__register">
             <h1 className='container__register__title' >S'inscrire</h1>
             <form className='container__register__form' onSubmit={handleSubmit}>
-                <label className='container__register__firstName' htmlFor="firstName">Prénom</label>
-                <input
-                    className='container__register__firstName__input'
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={formValues.firstName}
-                    onChange={handleChange}
-                    required
-                />
-                <label className='container__register__lastName' htmlFor="lastName">Nom de famille</label>
-                <input
-                    className='container__register__lastName__input'
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    value={formValues.lastName}
-                    onChange={handleChange}
-                    required
-                />
                 <label className='container__register__email' htmlFor="email">Adresse e-mail</label>
                 <input
                     className='container__register__email__input'
                     type="email"
                     id="email"
                     name="email"
-                    value={formValues.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 />
                 <label className='container__register__password' htmlFor="password">Mot de passe</label>
@@ -72,18 +56,8 @@ export default function Register() {
                     type="password"
                     id="password"
                     name="password"
-                    value={formValues.password}
-                    onChange={handleChange}
-                    required
-                />
-                <label className='container__register__confirmPassword' htmlFor="confirmPassword">Confirmer le mot de passe</label>
-                <input
-                    className='container__register__confirmPassword__input'
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    value={formValues.confirmPassword}
-                    onChange={handleChange}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                 />
                 <button className='container__register__submit' type="submit">S'inscrire</button>

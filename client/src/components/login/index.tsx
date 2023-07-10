@@ -8,23 +8,28 @@ interface FormValues {
 
 export default function Login() {
 
-    const [formValues, setFormValues] = useState<FormValues>({
-        email: "",
-        password: "",
-    });
+    const [ email, setEmail ] = useState<string>("");
+    const [ password, setPassword ] = useState<string>("");
 
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormValues((prevValues) => ({
-            ...prevValues,
-            [name]: value,
-        }));
+        const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+            const { token } = await response.json();
+            localStorage.setItem("token", token);
+        }
+        else {
+            console.log("error");
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-    }
+
 
     return (
         <div className="container__login">
@@ -36,8 +41,8 @@ export default function Login() {
                     type="email"
                     name="email"
                     id='email'
-                    value={formValues.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 />
                 <label className='container__login__password' htmlFor="password">Mot de passe</label>
@@ -46,8 +51,8 @@ export default function Login() {
                     type="password"
                     name="password"
                     id='password'
-                    value={formValues.password}
-                    onChange={handleChange}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                 />
                 <div className='container__login__forgot'>
