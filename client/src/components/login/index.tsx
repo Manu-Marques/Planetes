@@ -1,18 +1,24 @@
 import './styles.scss';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 interface FormValues {
     email: string;
     password: string;
 }
 
-export default function Login() {
+export default function Login({ handleLogin }: { handleLogin: (email: string, password: string) => void}) {
+
+    const navigate = useNavigate();
 
     const [ email, setEmail ] = useState<string>("");
     const [ password, setPassword ] = useState<string>("");
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        handleLogin(email, password);
+        navigate("/profil");
+    };
 
         const response = await fetch("http://localhost:3000/login", {
             method: "POST",
