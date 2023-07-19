@@ -1,6 +1,6 @@
 import './styles.scss';
 import { useState } from 'react';
-import Login from '../login';
+import { useNavigate } from 'react-router';
 
 
 interface FormValues {
@@ -12,12 +12,15 @@ interface FormValues {
 }
 
 export default function Register() {
+    
+    const navigate = useNavigate();
 
     const [ email, setEmail ] = useState<string>("");
     const [ password, setPassword ] = useState<string>("");
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        navigate("/profil");
     
 
     const response = await fetch("http://localhost:3000/signup", {
@@ -34,6 +37,7 @@ export default function Register() {
         console.log("error");
     }
 };
+
 
 
     return (
