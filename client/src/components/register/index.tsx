@@ -2,6 +2,7 @@ import './styles.scss';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../AuthContext';
+import yup from 'yup';
 
 
 interface FormValues {
@@ -9,7 +10,6 @@ interface FormValues {
     lastName: string;
     email: string;
     password: string;
-    confirmPassword: string;
 }
 
 export default function Register() {
