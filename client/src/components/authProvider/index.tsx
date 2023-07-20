@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { AuthContext } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [isLogin, setIsLogin] = useState<boolean>(false);
+    const Navigate = useNavigate();
 
     // Logique d'authentification Login
     const handleLogin = async (email: string, password: string) => {
@@ -49,6 +51,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsLogin(false);
+        Navigate("/")
     };
 
     return (
