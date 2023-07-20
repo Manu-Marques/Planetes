@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Planetes from '../../../src/assets/planetes.jpg';
+import { AuthContext } from "../AuthContext";
+import { useContext } from "react";
 import "./styles.scss";
 
 interface HeaderProps {
@@ -7,7 +9,10 @@ interface HeaderProps {
   handleLogout: () => void;
 }
 
-export default function Header({ isLogin, handleLogout }: HeaderProps) {
+export default function Header() {
+
+  const { isLogin, handleLogout } = useContext(AuthContext);
+
   return (
     <div className="header">
       <div className="header__logo">

@@ -1,6 +1,7 @@
 import './styles.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router';
+import { AuthContext } from '../AuthContext';
 
 
 interface FormValues {
@@ -11,9 +12,10 @@ interface FormValues {
     confirmPassword: string;
 }
 
-export default function Register({handleLogin}: {handleLogin: (email: string, password: string) => void}) {
+export default function Register() {
 
     const navigate = useNavigate();
+    const { handleRegister } = useContext(AuthContext);
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -21,9 +23,10 @@ export default function Register({handleLogin}: {handleLogin: (email: string, pa
     
         const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
-            handleLogin(email, password);
+            handleRegister(email, password);
             navigate("/profil");
         };
+
 
     return (
         <div className="container__register">

@@ -11,32 +11,27 @@ import Lunes from '../lunes'
 import Profil from '../profil'
 import DetailsPlanetes from '../planetes/detailsPlanetes'
 import DetailsLunes from '../lunes/detailsLunes'
+import { AuthProvider } from '../authProvider'
 
 //data
 import Data from '../data'
 
 //react
-import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default function App() {
 
   return (
     <div className="App">
-      <Header isLogin={isLogin} handleLogout={handleLogout} />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
         <Route path="/planetes" element={<Planetes />} />
         <Route path="/lunes" element={<Lunes />} />
-        <Route path="/login"
-          element={<Login
-            handleLogin={handleLogin}
-          />} />
-        <Route path="/signup"
-          element={<Register
-            handleLogin={handleLogin} />}
-        />
-        <Route path='/data' element={<Data />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/data" element={<Data />} />
         <Route path="/profil" element={<Profil />} />
 
         <Route path="/planetes/details_planetes" element={<DetailsPlanetes />} />

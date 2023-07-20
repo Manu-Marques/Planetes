@@ -1,15 +1,17 @@
 import './styles.scss';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
+import { AuthContext } from '../AuthContext';
 
 interface FormValues {
     email: string;
     password: string;
 }
 
-export default function Login({ handleLogin }: { handleLogin: (email: string, password: string) => void}) {
+export default function Login() {
 
     const navigate = useNavigate();
+    const { handleLogin } = useContext(AuthContext);
 
     const [ email, setEmail ] = useState<string>("");
     const [ password, setPassword ] = useState<string>("");
@@ -19,23 +21,6 @@ export default function Login({ handleLogin }: { handleLogin: (email: string, pa
         handleLogin(email, password);
         navigate("/profil");
     };
-
-        const response = await fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-        });
-
-        if (response.ok) {
-            const { token } = await response.json();
-            localStorage.setItem("token", token);
-        }
-        else {
-            console.log("error");
-        }
-    };
-
-
 
     return (
         <div className="container__login">
