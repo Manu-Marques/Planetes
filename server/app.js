@@ -7,12 +7,20 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import Joi from 'joi';
 
 const users = [];
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const signupSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(),
+  name: Joi.string().required(),
+  lastname: Joi.string().required(),
+});
 
 
 app.use(bodyParser.json());
@@ -52,7 +60,13 @@ app.post('/login', (req, res) => {
 
 //Signup
 app.post('/signup', (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name, lastname } = req.body;
+
+  // Vérifie les informations d'identification
+  const { error } = signupSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
 
   // Vérifie si l'utilisateur existe déjà
   const existingUser = users.find((user) => user.email === email);
@@ -63,7 +77,7 @@ app.post('/signup', (req, res) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
   
   // Crée un nouvel utilisateur
-  const newUser = { email, password: hashedPassword };
+  const newUser = { email, password: hashedPassword, name, lastname };
   users.push(newUser);
 
   // Générez un jeton d'authentification

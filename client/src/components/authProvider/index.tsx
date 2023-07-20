@@ -29,12 +29,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 
     // Logique d'authentification Register
-    const handleRegister = async (email: string, password: string) => {
+    const handleRegister = async (email: string, password: string, name: string, lastname: string) => {
 
         const response = await fetch("http://localhost:3000/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password, name, lastname }),
         });
 
         if (response.ok) {

@@ -17,13 +17,15 @@ export default function Register() {
     const navigate = useNavigate();
     const { handleRegister } = useContext(AuthContext);
 
+    const [name, setName] = useState<string>("");
+    const [lastname, setLastname] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
     
         const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
-            handleRegister(email, password);
+            handleRegister(email, password, name, lastname);
             navigate("/profil");
         };
 
@@ -38,6 +40,8 @@ export default function Register() {
                         type="text"
                         id="firstName"
                         name="firstName"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         required
                     />
                     <label className='container__register__lastName' htmlFor="lastName">Nom</label>
@@ -46,6 +50,8 @@ export default function Register() {
                         type="text"
                         id="lastName"
                         name="lastName"
+                        value={lastname}
+                        onChange={(e) => setLastname(e.target.value)}
                         required
                     />
                     <label className='container__register__email' htmlFor="email">Adresse e-mail</label>
