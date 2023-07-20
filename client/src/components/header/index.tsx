@@ -25,14 +25,14 @@ export default function Header() {
         </ul>
         <Link className="header__image" to="/"><img src={Planetes} alt="banniere" /></Link>
           {isLogin ? (
-            <>
-              <button className="header__logout" onClick={handleLogout}>
-                Déconnexion
-              </button>
-              <button className="header__profil">
-                Profil
-              </button>
-            </>
+              <div className="header__user-profil">
+                <Link className="header__profil" to="/profil">
+                  Profil
+                </Link>
+                <Link className="header__logout" to="/" onClick={handleLogout}>
+                  Déconnexion
+                </Link>
+              </div>
           ) : (
             <div className="header__connection">
               <Link className="header__login" to="/login">Login</Link>

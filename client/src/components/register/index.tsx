@@ -32,6 +32,22 @@ export default function Register() {
         <div className="container__register">
             <h1 className='container__register__title' >S'inscrire</h1>       
                 <form className='container__register__form' onSubmit={handleSubmit}>
+                    <label className='container__register__firstName' htmlFor="firstName">Prénom</label>
+                    <input
+                        className='container__register__firstName__input'
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        required
+                    />
+                    <label className='container__register__lastName' htmlFor="lastName">Nom</label>
+                    <input
+                        className='container__register__lastName__input'
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        required
+                    />
                     <label className='container__register__email' htmlFor="email">Adresse e-mail</label>
                     <input
                         className='container__register__email__input'

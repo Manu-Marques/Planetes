@@ -2,77 +2,84 @@
   background-color: black;
   border-radius: 20px;
 
-    &__image{
-      padding: 10px;
-    }
-    
-    &__login,
-    &__register,
-    &__lunes,
-    &__planetes,
-    &__news {
-      color: white;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      margin : 0 1rem;
-    }
-
-    &__connection {
-      display: flex;
-      align-items: center;
-    }
-
-    &__menu,
-    &__connection {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: white;
-      height: 100%;
-      padding: 10px;
-      border-radius: 20px;
-    }
-
-    &__news,
-    &__planetes,
-    &__lunes,
-    &__login,
-    &__register {
-      color: black;
-      font-size: 18px;
-    }
-
-    &__news:hover,
-    &__planetes:hover,
-    &__lunes:hover{
-      color: #dfa200;
-    }
-
-    &__login:hover,
-    &__register:hover {
-      color: #0a66c7;
-    }
+  &__image {
+    padding: 10px;
   }
-  
-  .header__nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .header__menu-item:not(:last-child) {
-    margin-right: 2rem;
-  }
-  
-  .header__menu-link {
+  &__login,
+  &__register,
+  &__lunes,
+  &__planetes,
+  &__news,
+  &__logout,
+  &__profil {
     color: white;
     text-decoration: none;
-    font-size: 1.2rem;
-    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
   }
-  
-  .header__menu-link:hover {
-    color: #fd5d4c;
+
+  &__connection,
+  &__user-profil {
+    display: flex;
+    align-items: center;
   }
-  
+
+  &__menu,
+  &__connection,
+  &__user-profil {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    height: 100%;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  &__news,
+  &__planetes,
+  &__lunes,
+  &__login,
+  &__register,
+  &__logout,
+  &__profil {
+    color: black;
+    font-size: 18px;
+  }
+
+  &__news:hover,
+  &__planetes:hover,
+  &__lunes:hover {
+    color: #dfa200;
+  }
+
+  &__login:hover,
+  &__register:hover,
+  &__logout:hover,
+  &__profil:hover {
+    color: #0a66c7;
+  }
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header__menu-item:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.header__menu-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.header__menu-link:hover {
+  color: #fd5d4c;
+}
