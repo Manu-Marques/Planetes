@@ -44,18 +44,19 @@ app.post('/login', (req, res) => {
 
   // Vérifie les informations d'identification
   const user = users.find((u) => u.email === email);
-    if (!user || !bcrypt.compareSync(password, user.password)) {
+  if (!user || !bcrypt.compareSync(password, user.password)) {
     return res.status(401).json({ message: 'Informations d\'identification invalides' });
   }
 
   // Générez un jeton d'authentification
   const token = jwt.sign({ email: user.email }, 'secretKey');
 
-  // Renvoye le jeton en réponse
-  res.json({ token });
-
-  console.log('Utilisateur connecté avec succès', user.email)
+  // Renvoyez une réponse JSON avec le token et le message de succès
+  res.status(200).json({ token, message: 'Connexion réussie' });
+  console.log('Utilisateur connecté avec succès', user.email);
 });
+
+
 
 
 //Signup
@@ -72,12 +73,12 @@ app.post('/signup', (req, res) => {
 
   // Vérifie si l'utilisateur existe déjà
   const existingUser = users.find((user) => user.email === email);
-    if (existingUser) {
+  if (existingUser) {
     return res.status(409).json({ message: 'Utilisateur existant' });
   }
   // Hache le mot de passe
   const hashedPassword = bcrypt.hashSync(password, 10);
-  
+
   // Crée un nouvel utilisateur
   const newUser = { email, password: hashedPassword, firstName, lastName };
   users.push(newUser);
@@ -85,6 +86,7 @@ app.post('/signup', (req, res) => {
   // Générez un jeton d'authentification
   const token = jwt.sign({ email: newUser.email }, 'secretKey');
   console.log('Utilisateur créé avec succès', newUser)
+  return res.status(200).json({ token, message: 'Utilisateur créé avec succès' });
 
   res.json({ token });
 

@@ -10,42 +10,53 @@ interface FormValues {
     lastName: string;
     email: string;
     password: string;
-}
-
-export default function Register() {
-
+  }
+  
+  interface SignupResponse {
+    token: string;
+    message: string;
+  }
+  
+  export default function Register() {
     const navigate = useNavigate();
-    const { handleRegister } = useContext(AuthContext);
-
     const [formValues, setFormValues] = useState<FormValues>({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
     });
-
+  
     const { firstName, lastName, email, password } = formValues;
-
+  
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
+      const { name, value } = e.target;
+      setFormValues({ ...formValues, [name]: value });
     };
-
+  
     const [message, setMessage] = useState<string>("");
-
+  
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log(formValues);
-        try {
-            handleRegister(email, password, firstName, lastName); 
-            setMessage("Vous êtes bien inscrit");
-            navigate("/profil");
-        } catch (error) {
-            setMessage("Erreur lors de l'inscription : " + (error as Error).message);
+      e.preventDefault();
+      try {
+        const response = await fetch("http://localhost:3000/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ firstName, lastName, email, password }),
+        });
+  
+        const data: SignupResponse = await response.json();
+  
+        if (response.ok) {
+          setMessage(data.message); // Affiche "Utilisateur créé avec succès" dans le message
+          navigate("/profil"); // Navigue vers la page de profil
+        } else {
+          setMessage(data.message); // Affiche "L'adresse e-mail est déjà enregistrée" dans le message
         }
+      } catch (error) {
+        setMessage("Erreur lors de l'inscription : " + (error as Error).message);
+      }
     };
-
-
+  
     return (
         <div className="container__register">
             <h1 className='container__register__title' >S'inscrire</h1>

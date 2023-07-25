@@ -6,20 +6,49 @@ import { AuthContext } from '../AuthContext';
 interface FormValues {
     email: string;
     password: string;
-}
-
-export default function Login() {
-
+  }
+  
+  interface LoginResponse {
+    token: string;
+    message: string;
+  }
+  
+  export default function Login() {
     const navigate = useNavigate();
-    const { handleLogin } = useContext(AuthContext);
-
-    const [ email, setEmail ] = useState<string>("");
-    const [ password, setPassword ] = useState<string>("");
-
+    const [formValues, setFormValues] = useState<FormValues>({
+      email: "",
+      password: "",
+    });
+  
+    const { email, password } = formValues;
+  
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setFormValues({ ...formValues, [name]: value });
+    };
+  
+    const [message, setMessage] = useState<string>("");
+  
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        handleLogin(email, password);
-        navigate("/profil");
+      e.preventDefault();
+      try {
+        const response = await fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+  
+        const data: LoginResponse = await response.json();
+  
+        if (response.ok) {
+          setMessage(data.message); // Affiche "Connexion réussie" dans le message
+          navigate("/profil"); // Navigue vers la page de profil
+        } else {
+          setMessage(data.message); // Affiche "Informations d'identification invalides" dans le message
+        }
+      } catch (error) {
+        setMessage("Erreur lors de la connexion : " + (error as Error).message);
+      }
     };
 
     return (
@@ -33,7 +62,7 @@ export default function Login() {
                     name="email"
                     id='email'
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleChange}
                     required
                 />
                 <label className='container__login__password' htmlFor="password">Mot de passe</label>
@@ -43,7 +72,7 @@ export default function Login() {
                     name="password"
                     id='password'
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={handleChange}
                     required
                 />
                 <div className='container__login__forgot'>
@@ -51,6 +80,7 @@ export default function Login() {
                 </div>
                 <button className='container__login__submit' type="submit">Se connecter</button>
             </form>
+                <p className='container__login__message'>{message}</p>
         </div>
     );
 }

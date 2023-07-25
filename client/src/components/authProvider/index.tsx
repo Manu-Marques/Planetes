@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Logique d'authentification Login
     const handleLogin = async (email: string, password: string) => {
+        console.log(email);
 
         const response = await fetch("http://localhost:3000/login", {
             method: "POST",
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setIsLogin(true);
         }
         else {
+            console.log("error", response.status);
         }
     };
 
