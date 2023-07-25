@@ -31,10 +31,18 @@ export default function Register() {
         setFormValues({ ...formValues, [name]: value });
     };
 
+    const [message, setMessage] = useState<string>("");
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        handleRegister(email, password, firstName, lastName);
-        navigate("/profil");
+        console.log(formValues);
+        try {
+            handleRegister(email, password, firstName, lastName); 
+            setMessage("Vous êtes bien inscrit");
+            navigate("/profil");
+        } catch (error) {
+            setMessage("Erreur lors de l'inscription : " + (error as Error).message);
+        }
     };
 
 
@@ -84,6 +92,7 @@ export default function Register() {
                 />
                 <button className='container__register__submit' type="submit">S'inscrire</button>
             </form>
+            <p className='container__register__message'>{message}</p>
         </div>
     );
 }

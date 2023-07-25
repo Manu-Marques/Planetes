@@ -18,8 +18,8 @@ const __dirname = path.dirname(__filename);
 const signupSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
-  name: Joi.string().required(),
-  lastname: Joi.string().required(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
 });
 
 
@@ -60,7 +60,9 @@ app.post('/login', (req, res) => {
 
 //Signup
 app.post('/signup', (req, res) => {
-  const { email, password, name, lastname } = req.body;
+  const { email, password, firstName, lastName } = req.body;
+
+  console.log(req.body);
 
   // Vérifie les informations d'identification
   const { error } = signupSchema.validate(req.body);
@@ -77,25 +79,25 @@ app.post('/signup', (req, res) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
   
   // Crée un nouvel utilisateur
-  const newUser = { email, password: hashedPassword, name, lastname };
+  const newUser = { email, password: hashedPassword, firstName, lastName };
   users.push(newUser);
 
   // Générez un jeton d'authentification
   const token = jwt.sign({ email: newUser.email }, 'secretKey');
+  console.log('Utilisateur créé avec succès', newUser)
 
   res.json({ token });
 
- console.log('Utilisateur créé avec succès', newUser)
 });
 
 
 app.get('/planetes/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const planeta = planetes.find((planeta) => planeta.id === id);
-  if (planeta) {
-    res.json(planeta);
+  const planete = planete.find((planeta) => planeta.id === id);
+  if (planete) {
+    res.json(planete);
   } else {
-    res.status(404).json({ error: `Planeta ${id} no encontrado` });
+    res.status(404).json({ error: `Planète ${id} pas trouvée` });
   }
 });
 
@@ -105,11 +107,11 @@ app.get('/data', (req, res) => {
 
 app.get('/lunes/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const luna = lunes.find((luna) => luna.id === id);
-  if (luna) {
-    res.json(luna);
+  const lune = lunes.find((lune) => lune.id === id);
+  if (lune) {
+    res.json(lune);
   } else {
-    res.status(404).json({ error: `Luna ${id} no encontrada` });
+    res.status(404).json({ error: `Lune ${id} pas trouvée` });
   }
 });
 

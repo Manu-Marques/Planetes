@@ -23,6 +23,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <AuthProvider>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/planetes/details_planetes" element={<DetailsPlanetes />} />
         <Route path="/lunes/details_lunes" element={<DetailsLunes />} />
       </Routes>
+      </AuthProvider>
     </div>
   )
 }
