@@ -23,13 +23,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setIsLogin(true);
         }
         else {
-            console.log("error");
         }
     };
 
 
     // Logique d'authentification Register
-    const handleRegister = async (email: string, password: string, name: string, lastname: string) => {
+    const handleRegister = async (email: string, password: string, name:string, lastname: string) => {
 
         const response = await fetch("http://localhost:3000/signup", {
             method: "POST",
