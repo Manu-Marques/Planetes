@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [isLogin, setIsLogin] = useState<boolean>(false);
+    const [firstName, setFirstName] = useState<string>("");
+    const [lastName, setLastName] = useState<string>("");
+
     const Navigate = useNavigate();
 
     // Logique d'authentification Login
@@ -28,12 +31,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 
     // Logique d'authentification Register
-    const handleRegister = async (email: string, password: string, name:string, lastname: string) => {
+    const handleRegister = async (email: string, password: string, firstName: string, lastname: string) => {
 
         const response = await fetch("http://localhost:3000/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password, name, lastname }),
+            body: JSON.stringify({ email, password, firstName, lastname }),
         });
 
         if (response.ok) {
@@ -54,7 +57,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isLogin, handleLogin, handleRegister, handleLogout }}>
+        <AuthContext.Provider
+            value={{
+                isLogin,
+                firstName,
+                lastName,
+                handleLogin,
+                handleRegister,
+                handleLogout,
+            }}>
             {children}
         </AuthContext.Provider>
     );

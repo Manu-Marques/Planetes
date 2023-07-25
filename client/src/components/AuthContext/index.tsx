@@ -1,8 +1,19 @@
-import React from 'react';
+import {createContext} from 'react';
 
-export const AuthContext = React.createContext({
+interface AuthContextProps {
+    isLogin: boolean;
+    firstName: string;
+    lastName: string;
+    handleRegister: (email: string, password: string, firstName: string, lastname: string) => void;
+    handleLogin: (email: string, password: string) => void;
+    handleLogout: () => void;
+}
+
+export const AuthContext = createContext<AuthContextProps>({
     isLogin: false,
-    handleRegister: (email: string, password: string, name: string, lastname: string) => { },
+    firstName: "",
+    lastName: "",
+    handleRegister: (email: string, password: string, firstName: string, lastname: string) => { },
     handleLogin: (email: string, password: string) => { },
     handleLogout: () => { },
 });

@@ -1,5 +1,6 @@
 import './styles.scss'
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 interface CardProps {
     id: number;
@@ -37,6 +38,7 @@ function Card({ id, name, description, image }: CardProps) {
             <div key={id} className='lunes__card' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(${scale})` }}>
                 <h2>{name}</h2>
                 <p>{description}</p>
+                <Link to={`/lunes/${id}`}>Voir plus</Link>
                 <img className='lunes__img' src={`/images/${image}`} alt={name} />
             </div>
         </div>
