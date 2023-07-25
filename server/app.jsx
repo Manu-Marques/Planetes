@@ -10,10 +10,12 @@ import jwt from 'jsonwebtoken';
 import Joi from 'joi';
 
 const users = [];
+let currentId = 1;
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 const signupSchema = Joi.object({
   email: Joi.string().email().required(),
@@ -80,15 +82,13 @@ app.post('/signup', (req, res) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
 
   // Crée un nouvel utilisateur
-  const newUser = { email, password: hashedPassword, firstName, lastName };
+  const newUser = { id: currentId++, firstName, lastName, email, password: hashedPassword };
   users.push(newUser);
 
   // Générez un jeton d'authentification
   const token = jwt.sign({ email: newUser.email }, 'secretKey');
   console.log('Utilisateur créé avec succès', newUser)
-  return res.status(200).json({ token, message: 'Utilisateur créé avec succès' });
-
-  res.json({ token });
+  res.status(200).json({ token, message: 'Utilisateur créé avec succès' });
 
 });
 

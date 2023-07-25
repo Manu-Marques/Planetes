@@ -33,7 +33,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/data" element={<Data />} />
-        <Route path="/profil" element={<Profil />} />
+        <Route path="/profil/:id" element={<Profil />} />
 
         <Route path="/planetes/details_planetes" element={<DetailsPlanetes />} />
         <Route path="/lunes/details_lunes" element={<DetailsLunes />} />

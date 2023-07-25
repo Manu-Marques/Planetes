@@ -15,6 +15,12 @@ interface FormValues {
   interface SignupResponse {
     token: string;
     message: string;
+    user: {
+        id: number;
+        firstName: string;
+        lastName: string;
+        email: string;
+    };
   }
   
   export default function Register() {
@@ -47,10 +53,10 @@ interface FormValues {
         const data: SignupResponse = await response.json();
   
         if (response.ok) {
-          setMessage(data.message); // Affiche "Utilisateur créé avec succès" dans le message
-          navigate("/profil"); // Navigue vers la page de profil
+          setMessage(data.message);
+          navigate(`/profil/${data.user.id}`)
         } else {
-          setMessage(data.message); // Affiche "L'adresse e-mail est déjà enregistrée" dans le message
+          setMessage(data.message); 
         }
       } catch (error) {
         setMessage("Erreur lors de l'inscription : " + (error as Error).message);
