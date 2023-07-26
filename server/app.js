@@ -54,7 +54,7 @@ app.post('/login', (req, res) => {
   const token = jwt.sign({ email: user.email }, 'secretKey');
 
   // Renvoyez une réponse JSON avec le token et le message de succès
-  res.status(200).json({ token, message: 'Connexion réussie' });
+  res.json({ token, user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email } });
   console.log('Utilisateur connecté avec succès', user.email);
 });
 
@@ -88,8 +88,18 @@ app.post('/signup', (req, res) => {
   // Générez un jeton d'authentification
   const token = jwt.sign({ email: newUser.email }, 'secretKey');
   console.log('Utilisateur créé avec succès', newUser)
-  res.status(200).json({ token, message: 'Utilisateur créé avec succès' });
+  res.status(200).json({ token, message: 'Utilisateur créé avec succès', user: { id: newUser.id, firstName, lastName, email } });
+});
 
+app.get('/user/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const user = users.find((user) => user.id === id);
+  if (user) {
+    const { password, ...userData } = user;
+    res.json(userData);
+  } else {
+    res.status(404).json({ error: `Utilisateur ${id} pas trouvé` });
+  }
 });
 
 

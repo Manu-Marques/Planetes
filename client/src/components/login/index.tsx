@@ -1,7 +1,6 @@
 import './styles.scss';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
-import { AuthContext } from '../AuthContext';
 
 interface FormValues {
     email: string;
@@ -11,6 +10,12 @@ interface FormValues {
   interface LoginResponse {
     token: string;
     message: string;
+    user: {
+      id: number;
+      firstName: string;
+      lastName: string;
+      email: string;
+    };
   }
   
   export default function Login() {
@@ -41,10 +46,12 @@ interface FormValues {
         const data: LoginResponse = await response.json();
   
         if (response.ok) {
-          setMessage(data.message); // Affiche "Connexion réussie" dans le message
-          navigate("/profil"); // Navigue vers la page de profil
-        } else {
-          setMessage(data.message); // Affiche "Informations d'identification invalides" dans le message
+          setMessage(data.message); 
+          if (data.user && data.user.id) {
+            navigate(`/profil/${data.user.id}`);
+          }
+          } else {
+          setMessage(data.message); 
         }
       } catch (error) {
         setMessage("Erreur lors de la connexion : " + (error as Error).message);

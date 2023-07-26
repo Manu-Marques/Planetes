@@ -34,8 +34,6 @@ export default function Profil() {
         return <div>Chargement...</div>;
     }
 
-
-
     return (
         <div className='profil'>
         <h1 className='profil__title'>Profil</h1>
