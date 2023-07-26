@@ -1,6 +1,7 @@
 import './styles.scss';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router';
+import { AuthContext } from '../AuthContext';
 
 
 interface FormValues {
@@ -22,6 +23,7 @@ interface SignupResponse {
 }
 
 export default function Register() {
+  const { setIsLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<FormValues>({
     firstName: "",
@@ -53,6 +55,7 @@ export default function Register() {
       if (response.ok) {
         setMessage(data.message);
         if (data.user && data.user.id) {
+          setIsLogin(true)
           navigate(`/profil/${data.user.id}`);
         }        
       } else {

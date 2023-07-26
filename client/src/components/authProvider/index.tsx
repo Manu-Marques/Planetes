@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Logique d'authentification Login
     const handleLogin = async (email: string, password: string) => {
-        console.log(email);
 
         const response = await fetch("http://localhost:3000/login", {
             method: "POST",
@@ -25,6 +24,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             const { token } = await response.json();
             localStorage.setItem("token", token);
             setIsLogin(true);
+            setFirstName("");
+            setLastName("");
         }
         else {
             console.log("error", response.status);
@@ -45,6 +46,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             const { token } = await response.json();
             localStorage.setItem("token", token);
             setIsLogin(true);
+            setFirstName("");
+            setLastName("");   
         }
         else {
             console.log("error");
@@ -67,6 +70,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 handleLogin,
                 handleRegister,
                 handleLogout,
+                setIsLogin,
             }}>
             {children}
         </AuthContext.Provider>
