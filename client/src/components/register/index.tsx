@@ -25,8 +25,8 @@ interface SignupResponse {
 
 export default function Register() {
 
-  const { setUser } = useContext(AuthContext);
-  const { setIsLogin } = useContext(AuthContext);
+  const { setUser, setUserProfile, setIsLogin } = useContext(AuthContext);
+
 
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<FormValues>({
@@ -61,8 +61,9 @@ export default function Register() {
       if (response.ok) {
         setMessage(data.message);
         if (data.user && data.user.id) {
-          setIsLogin(true)
           setUser(data.user)
+          setUserProfile(data.user)
+          setIsLogin(true);
           navigate(`/profil/${data.user.id}`);
         }        
       } else {

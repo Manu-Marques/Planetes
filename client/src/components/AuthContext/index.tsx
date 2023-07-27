@@ -5,6 +5,7 @@ interface AuthContextProps {
     isLogin: boolean;
     user: User | null;
     userProfile: UserProfile | null;
+    setUserProfile: (userProfile: UserProfile | null) => void;
     firstName: string;
     lastName: string;
     handleRegister: (email: string, password: string, firstName: string, lastname: string) => void;
@@ -20,6 +21,7 @@ export const AuthContext = createContext<AuthContextProps>({
     lastName: "",
     user: null,
     userProfile: null,
+    setUserProfile: (userProfile: UserProfile | null) => void { },
     handleRegister: (email: string, password: string, firstName: string, lastname: string) => { },
     handleLogin: (email: string, password: string) => { },
     handleLogout: () => { },

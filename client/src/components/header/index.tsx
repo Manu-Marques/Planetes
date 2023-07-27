@@ -13,8 +13,6 @@ export default function Header() {
 
   const { isLogin, handleLogout, userProfile } = useContext(AuthContext);
 
-  console.log("userProfile", userProfile)
-
   return (
     <div className="header">
       <div className="header__logo">

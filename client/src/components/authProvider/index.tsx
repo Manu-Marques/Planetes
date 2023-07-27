@@ -10,14 +10,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [user, setUser] = useState<User | null>(null);
-    const [userProfile, setUserProfile] = useState<User | null>(null);
-    const [ currentUserProfile, setCurrentUserProfile ] = useState<User | null>(null);
+    const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
     const Navigate = useNavigate();
-
-    const handleSetUserProfile = (userProfile: UserProfile | null) => {
-        setUserProfile(userProfile);
-    };
 
 
     // Logique d'authentification Login
@@ -30,9 +25,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
         if (response.ok) {
-            const { token } = await response.json();
+            const { token, user: userData } = await response.json();
             localStorage.setItem("token", token);
             setIsLogin(true);
+            setUser(userData);
+            setUserProfile(userData);
             setFirstName("");
             setLastName("");
 
@@ -52,9 +49,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
         if (response.ok) {
-            const { token } = await response.json();
+            const { token, user: userData } = await response.json();            
             localStorage.setItem("token", token);
             setIsLogin(true);
+            setUser(userData);
+            setUserProfile(userData);
             setFirstName("");
             setLastName("");
         }
@@ -77,13 +76,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         <AuthContext.Provider
             value={{
                 isLogin,
-                userProfile: userProfile,
+                userProfile,
                 user,
                 firstName,
                 lastName,
                 handleLogin,
                 handleRegister,
                 handleLogout,
+                setUserProfile,
                 setIsLogin,
                 setUser,
             }}>

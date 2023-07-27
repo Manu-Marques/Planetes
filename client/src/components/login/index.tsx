@@ -22,7 +22,7 @@ interface FormValues {
   
   export default function Login() {
 
-    const { setIsLogin } = useContext(AuthContext);
+    const { setIsLogin, setUserProfile } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const [formValues, setFormValues] = useState<FormValues>({
@@ -54,6 +54,7 @@ interface FormValues {
           setMessage(data.message); 
           if (data.user && data.user.id) {
             setIsLogin(true);
+            setUserProfile(data.user);
             navigate(`/profil/${data.user.id}`);
           }
           } else {
