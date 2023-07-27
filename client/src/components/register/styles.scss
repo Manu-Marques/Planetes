@@ -6,7 +6,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: rgb(117, 107, 107);
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
 
@@ -54,6 +54,11 @@
 
   &__submit:hover {
     background-color: #0069d9;
+  }
+
+  &__message {
+    color: #ff0000;
+    text-align: center;
   }
 }
 

@@ -19,7 +19,10 @@ const __dirname = path.dirname(__filename);
 
 const signupSchema = Joi.object({
   email: Joi.string().email().required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(6).required().messages({
+    'string.min': 'Le mot de passe doit comporter au moins 6 caractères',
+    'any.required': 'Le mot de passe est obligatoire',
+  }),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
 });
@@ -47,7 +50,7 @@ app.post('/login', (req, res) => {
   // Vérifie les informations d'identification
   const user = users.find((u) => u.email === email);
   if (!user || !bcrypt.compareSync(password, user.password)) {
-    return res.status(401).json({ message: 'Informations d\'identification invalides' });
+    return res.status(401).json({ message: 'E-mail ou mot de passe incorrect ' });
   }
 
   // Générez un jeton d'authentification
@@ -55,7 +58,6 @@ app.post('/login', (req, res) => {
 
   // Renvoyez une réponse JSON avec le token et le message de succès
   res.json({ token, user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email } });
-  console.log('Utilisateur connecté avec succès', user.email);
 });
 
 
@@ -87,7 +89,6 @@ app.post('/signup', (req, res) => {
 
   // Générez un jeton d'authentification
   const token = jwt.sign({ email: newUser.email }, 'secretKey');
-  console.log('Utilisateur créé avec succès', newUser)
   res.status(200).json({ token, message: 'Utilisateur créé avec succès', user: { id: newUser.id, firstName, lastName, email } });
 });
 
