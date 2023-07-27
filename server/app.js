@@ -67,8 +67,6 @@ app.post('/login', (req, res) => {
 app.post('/signup', (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
-  console.log(req.body);
-
   // Vérifie les informations d'identification
   const { error } = signupSchema.validate(req.body);
   if (error) {

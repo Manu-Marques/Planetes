@@ -27,7 +27,6 @@ export default function Register() {
 
   const { setUser, setUserProfile, setIsLogin } = useContext(AuthContext);
 
-
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<FormValues>({
     firstName: "",
@@ -55,8 +54,6 @@ export default function Register() {
       });
 
       const data: SignupResponse = await response.json();
-
-      console.log("User data from server:", data.user); 
 
       if (response.ok) {
         setMessage(data.message);

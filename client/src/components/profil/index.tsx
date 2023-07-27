@@ -11,9 +11,6 @@ export default function Profil() {
     const { userProfile } = useContext(AuthContext);
     const [ userProfileData, setUserProfileData ] = React.useState<UserProfile | null>(null);
 
-    console.log("userProfile", userProfile)
-    console.log("userProfileData", userProfileData)
-
     React.useEffect(() => {
         const fetchUserProfile = async () => {
             try {
