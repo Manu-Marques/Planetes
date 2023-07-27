@@ -11,9 +11,9 @@ interface HeaderProps {
 
 export default function Header() {
 
-  const { isLogin, handleLogout } = useContext(AuthContext);
+  const { isLogin, handleLogout, userProfile } = useContext(AuthContext);
 
-  console.log(isLogin);
+  console.log("userProfile", userProfile)
 
   return (
     <div className="header">
@@ -26,21 +26,27 @@ export default function Header() {
           <li><Link className="header__lunes" to="/lunes">Lunes</Link></li>
         </ul>
         <Link className="header__image" to="/"><img src={Planetes} alt="banniere" /></Link>
-          {isLogin ? (
-              <div className="header__user-profil">
-                <Link className="header__profil" to="/profil">
-                  Profil
-                </Link>
-                <Link className="header__logout" to="/" onClick={handleLogout}>
-                  Déconnexion
-                </Link>
-              </div>
-          ) : (
-            <div className="header__connection">
-              <Link className="header__login" to="/login">Login</Link>
-              <Link className="header__register" to="/signup">Register</Link>
-            </div>
-          )}
+        {isLogin ? (
+          <div className="header__user-profil">
+            { userProfile ? (
+            <Link className="header__profil" to={`/profil/${userProfile?.id}`}>
+              Profil
+            </Link>
+            ) : (
+              <Link className="header__profil" to={`/profil/`}>
+                Profil
+              </Link>
+            )}
+              <Link className="header__logout" to="/" onClick={handleLogout}>
+                Déconnexion
+              </Link>
+          </div>
+        ) : (
+          <div className="header__connection">
+            <Link className="header__login" to="/login">Login</Link>
+            <Link className="header__register" to="/signup">Register</Link>
+          </div>
+        )}
       </nav>
     </div>
   );

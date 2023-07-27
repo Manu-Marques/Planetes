@@ -2,6 +2,7 @@ import './styles.scss';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../AuthContext';
+import { User } from '../types';
 
 
 interface FormValues {
@@ -23,7 +24,10 @@ interface SignupResponse {
 }
 
 export default function Register() {
+
+  const { setUser } = useContext(AuthContext);
   const { setIsLogin } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<FormValues>({
     firstName: "",
@@ -52,10 +56,13 @@ export default function Register() {
 
       const data: SignupResponse = await response.json();
 
+      console.log("User data from server:", data.user); 
+
       if (response.ok) {
         setMessage(data.message);
         if (data.user && data.user.id) {
           setIsLogin(true)
+          setUser(data.user)
           navigate(`/profil/${data.user.id}`);
         }        
       } else {

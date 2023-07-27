@@ -1,19 +1,14 @@
 import React from 'react';
 import './styles.scss';
 import { useParams } from 'react-router-dom';
-
-interface UserProfile {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-}
-
+import { UserProfile } from '../types';
 
 export default function Profil() {
 
     const { id } = useParams();
     const [userProfile, setUserProfile] = React.useState<UserProfile | null>(null);
+
+    console.log("userProfile", userProfile)
 
     React.useEffect(() => {
         const fetchUserProfile = async () => {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AuthContext } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { User, UserProfile } from '../types';
 
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -8,8 +9,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isLogin, setIsLogin] = useState<boolean>(false);
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
+    const [user, setUser] = useState<User | null>(null);
+    const [userProfile, setUserProfile] = useState<User | null>(null);
+    const [ currentUserProfile, setCurrentUserProfile ] = useState<User | null>(null);
 
     const Navigate = useNavigate();
+
+    const handleSetUserProfile = (userProfile: UserProfile | null) => {
+        setUserProfile(userProfile);
+    };
+
 
     // Logique d'authentification Login
     const handleLogin = async (email: string, password: string) => {
@@ -26,6 +35,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setIsLogin(true);
             setFirstName("");
             setLastName("");
+
         }
         else {
             console.log("error", response.status);
@@ -35,7 +45,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Logique d'authentification Register
     const handleRegister = async (email: string, password: string, firstName: string, lastName: string) => {
-            console.log(email, password, firstName, lastName);
         const response = await fetch("http://localhost:3000/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -47,7 +56,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             localStorage.setItem("token", token);
             setIsLogin(true);
             setFirstName("");
-            setLastName("");   
+            setLastName("");
         }
         else {
             console.log("error");
@@ -58,6 +67,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsLogin(false);
+        setFirstName("");
+        setLastName("");
+        setUser(null);
         Navigate("/")
     };
 
@@ -65,12 +77,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         <AuthContext.Provider
             value={{
                 isLogin,
+                userProfile: userProfile,
+                user,
                 firstName,
                 lastName,
                 handleLogin,
                 handleRegister,
                 handleLogout,
                 setIsLogin,
+                setUser,
             }}>
             {children}
         </AuthContext.Provider>
