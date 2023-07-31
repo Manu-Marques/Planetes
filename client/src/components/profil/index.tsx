@@ -32,10 +32,20 @@ export default function Profil() {
 
     return (
         <div className='profil'>
-        <h1 className='profil__title'>Profil</h1>
-        <p>Prénom : {userProfileData.firstName}</p>
-        <p>Nom : {userProfileData.lastName}</p>
-        <p>Email : {userProfileData.email}</p>
+        <div className='profil__principal'>
+            <h1 className='profil__principal__title'>Profil</h1>
+        </div>
+        <div className="profil__container">
+            <div className="profil__container_name">
+                <p>Prénom : {userProfileData.firstName}</p>
+            </div>
+            <div className="profil__container__lastName">
+                <p>Nom : {userProfileData.lastName}</p>
+            </div>
+            <div className="profil__container__email">
+                <p>Email : {userProfileData.email}</p>
+            </div>
+        </div>
         </div>
     )
 }
