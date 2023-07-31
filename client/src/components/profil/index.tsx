@@ -36,14 +36,14 @@ export default function Profil() {
             <h1 className='profil__principal__title'>Profil</h1>
         </div>
         <div className="profil__container">
-            <div className="profil__container_name">
-                <p>Prénom : {userProfileData.firstName}</p>
+            <div className="profil__container__name">
+                <p className='profil__container__name__firstName'>Prénom : {userProfileData.firstName}</p>
             </div>
             <div className="profil__container__lastName">
-                <p>Nom : {userProfileData.lastName}</p>
+                <p className='profil__container__lastName__famillyName'>Nom : {userProfileData.lastName}</p>
             </div>
             <div className="profil__container__email">
-                <p>Email : {userProfileData.email}</p>
+                <p className='profil__container__email__emailAdress'>Email : {userProfileData.email}</p>
             </div>
         </div>
         </div>

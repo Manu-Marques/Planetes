@@ -38,6 +38,41 @@
             font-weight: 600;
             margin-bottom: 20px;
             color: black;
+
+            &__firstName{
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+                color: black;    
+            }
         }
+        &__lastName{
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: black;
+
+            &__famillyName{
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+                color: black;    
+            }
+        }
+
+        &__email{
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: black;
+
+            &__emailAdress{
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+                color: black;    
+            }
+        }
+
     }
 }
